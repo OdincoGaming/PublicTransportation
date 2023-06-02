@@ -9,6 +9,7 @@ public class Cell : ScriptableObject
     public bool _isWalkway;
     public bool _isEndPoint;
     public bool _isExit;
+    public bool _isSpawn;
 
     public void PopulateNeighbors(List<Cell> cells)
     {
