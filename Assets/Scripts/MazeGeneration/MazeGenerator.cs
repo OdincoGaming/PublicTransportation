@@ -6,65 +6,33 @@ public class MazeGenerator : MonoBehaviour
 {
     public int width;
     public int height;
-    public List<int> possibleExits;
-    public List<Cell> cells; 
+    public float xDensity = 0.0f;
+    public float zDensity = 0.0f;
+    public List<string> possibleExits;
+    public Cell[,] cells = new Cell[0,0];
     public List<Cell> cellsRemaining;
-    public List<Cell> cellsTouched;
-    public List<Vector3> cellPositions;
     public List<Cell> validPositions;
-    private void DrawGridDebug()
+
+    private void Awake()
     {
-        for(int i = 0; i < width; i++)
-        {
-            for(int j = 0; j < height; j++)
-            {
-
-#if UNITY_EDITOR
-                Vector3 lineStart = new Vector3(i, 0, j);
-                Vector3 lineForwardEnd = new Vector3(i, 0, j + 1);
-                Vector3 lineSidewaysEnd = new Vector3(i + 1, 0, j);
-
-                // z lines
-                if(i == 0 || i == width - 1)
-                {
-                    if (j != height - 1)
-                        Debug.DrawLine(lineStart, lineForwardEnd, Color.green);
-                }
-                else
-                {
-                    if (j != height - 1)
-                        Debug.DrawLine(lineStart, lineForwardEnd, Color.blue);
-                }
-
-                // x lines
-                if(j == 0 || j == height - 1)
-                {
-                    if (i != width - 1)
-                        Debug.DrawLine(lineStart, lineSidewaysEnd, Color.green);
-                }
-                else
-                {
-                    if (i != width - 1)
-                        Debug.DrawLine(lineStart, lineSidewaysEnd, Color.blue);
-                }
-#endif
-
-            }
-        }
+        DrawGrid();
     }
+
 
     private void DrawGrid()
     {
+        cells = new Cell[width, height];
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
             {
-                // add cell positions to list
-                if (i != width - 1 && j != height - 1)
-                {
-                    Vector3 cellPos = new Vector3(i + 0.5f, 0, j + 0.5f);
-                    cellPositions.Add(cellPos);
-                }
+
+                Cell cell = ScriptableObject.CreateInstance("Cell") as Cell;
+                cell._location = new Vector3(i + 0.5f, 0, j + 0.5f);
+                cell.xPos = i;
+                cell.zPos = j;
+                cells[i, j] = cell;
+
             }
         }
 
@@ -73,124 +41,490 @@ public class MazeGenerator : MonoBehaviour
 
     private void PopulateCellList()
     {
-        foreach(Vector3 v in cellPositions)
+        for (int i = 0; i < width; i++)
         {
-            Cell c = ScriptableObject.CreateInstance("Cell") as Cell;
-            c._location = v;
-            cells.Add(c);
-        }
-
-        foreach(Cell cell in cells)
-        {
-            cell.PopulateNeighbors(cells);
-        }
-
-        CarveExit();
-    }
-
-    private void Update()
-    {
-        DrawGridDebug();
-    }
-    private void Awake()
-    {
-        DrawGrid();
-    }
-
-    private void OnDrawGizmosSelected()
-    { 
-        if(cellPositions.Count > 0)
-        {
-            foreach (Cell c in cells)
+            for (int j = 0; j < height; j++)
             {
-                if (c._isEndPoint)
-                {
-                    Gizmos.color = Color.white;
-                    Gizmos.DrawSphere(c._location, 0.25f);
-                }
-                else if (c._isWalkway)
-                {
-                    Gizmos.color = Color.black;
-                    Gizmos.DrawSphere(c._location, 0.25f);
-                }
-                else
-                {
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawSphere(c._location, 0.25f);
-                }
+                cells[i, j].PopulateNeighbors(cells);
+                validPositions.Add(cells[i, j]);
             }
         }
+        CarveExit();
     }
 
     private void CarveExit()
     {
-        cellsRemaining = new List<Cell>(cells);
-
         List<Cell> exits = new List<Cell>();
-        foreach (int i in possibleExits)
-            exits.Add(cells[i]);
+        if(possibleExits.Count >0)
+        {
+            foreach (string s in possibleExits)
+            {
+                string[] cor = s.Split('-');
+                int x = int.Parse(cor[0]);
+                int z = int.Parse(cor[1]);
+                exits.Add(cells[x, z]);
+            }
+            int randomInt = Random.Range(0, exits.Count - 1);
 
-        int randomInt = Random.Range(0, exits.Count - 1);
+            exits[randomInt].cellState = CellState.Exit;
+            Carve(exits[randomInt]);
+        }
+        else
+        {
+            Carve(cells[0, 0]);
+        }
+        for(int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                if(cells[i,j].cellState == CellState.Wall)
+                {
+                    if(cells[i,j].cellState == CellState.Wall)
+                    {
+                        if (CheckForValidPaths(cells[i, j], 's'))
+                        {
+                            cells[i,j].cellState = CellState.Walkway;
+                        }
 
-        exits[randomInt]._isExit = true;
-        exits[randomInt]._isWalkway = true;
-        cellsRemaining.Remove(exits[randomInt]);
-        cellsTouched.Add(exits[randomInt]);
-        Carve(exits[randomInt]);
+                    }
+                }
+            }
+        }
     }
 
     private void Carve(Cell c)
     {
-        if(cellsRemaining.Contains(c))
-            cellsRemaining.Remove(c);
-
-        if (!cellsTouched.Contains(c))
-            cellsTouched.Add(c);
-
-        CheckForValidPositions(c);
-        if(validPositions.Count > 0)
+        c.isAssigned = true;
+        List<char> dirList = new List<char> { 'n','s','w','e'};
+        int ri = Random.Range(0, dirList.Count);
+        ri = Random.Range(0, dirList.Count);
+        while (dirList.Count > 0)
         {
-            Carve(PickPosition(validPositions));
-        }
-        else
-        {
-            c._isEndPoint = true;
-            if(validPositions.Count > 0)
+            if (dirList.Count > 0)
             {
-                Cell temp = validPositions[0];
-                validPositions.RemoveAt(0);
-                Carve(temp);
+                if (dirList[ri] == 'n')
+                {
+                    if (c.northNeighbor[0] > -1)
+                    {
+                        if (cells[c.northNeighbor[0], c.northNeighbor[1]].isAssigned)
+                        {
+                            if (cells[c.northNeighbor[0], c.northNeighbor[1]].cellState == CellState.Wall)
+                            {
+                                if (c.cellState == CellState.Walkway)
+                                {
+                                    if (CheckForValidPaths(cells[c.northNeighbor[0], c.northNeighbor[1]], 's'))
+                                    {
+                                        cells[c.northNeighbor[0], c.northNeighbor[1]].step += (c.step + 1);
+                                        cells[c.northNeighbor[0], c.northNeighbor[1]].cellState = CellState.Walkway;
+                                        Carve(cells[c.northNeighbor[0], c.northNeighbor[1]]);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (CheckForValidPaths(cells[c.northNeighbor[0], c.northNeighbor[1]], 's'))
+                            {
+                                if (c.cellState == CellState.Walkway)
+                                {
+                                    cells[c.northNeighbor[0], c.northNeighbor[1]].step += (c.step + 1);
+                                }
+                                cells[c.northNeighbor[0], c.northNeighbor[1]].cellState = CellState.Walkway;
+                            }
+                            Carve(cells[c.northNeighbor[0], c.northNeighbor[1]]);
+                        }
+                    }
+                }
+                else if (dirList[ri] == 's')
+                {
+                    if (c.southNeighbor[0] > -1)
+                    {
+                        if (cells[c.southNeighbor[0], c.southNeighbor[1]].isAssigned)
+                        {
+                            if (cells[c.southNeighbor[0], c.southNeighbor[1]].cellState == CellState.Wall)
+                            {
+                                if (c.cellState == CellState.Walkway)
+                                {
+                                    if (CheckForValidPaths(cells[c.southNeighbor[0], c.southNeighbor[1]], 'n'))
+                                    {
+                                        cells[c.southNeighbor[0], c.southNeighbor[1]].step += (c.step + 1);
+                                        cells[c.southNeighbor[0], c.southNeighbor[1]].cellState = CellState.Walkway;
+                                    }
+                                    Carve(cells[c.southNeighbor[0], c.southNeighbor[1]]);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (CheckForValidPaths(cells[c.southNeighbor[0], c.southNeighbor[1]], 'n'))
+                            {
+                                if (c.cellState == CellState.Walkway)
+                                {
+                                    cells[c.southNeighbor[0], c.southNeighbor[1]].step += (c.step + 1);
+                                }
+                                cells[c.southNeighbor[0], c.southNeighbor[1]].cellState = CellState.Walkway;
+                            }
+                            Carve(cells[c.southNeighbor[0], c.southNeighbor[1]]);
+                        }
+                    }
+                }
+                else if (dirList[ri] == 'e')
+                {
+                    if (c.eastNeighbor[0] > -1)
+                    {
+                        if (cells[c.eastNeighbor[0], c.eastNeighbor[1]].isAssigned)
+                        {
+                            if(cells[c.eastNeighbor[0], c.eastNeighbor[1]].cellState == CellState.Wall)
+                            {
+                                if (c.cellState == CellState.Walkway)
+                                {
+                                    if (CheckForValidPaths(cells[c.eastNeighbor[0], c.eastNeighbor[1]], 'w'))
+                                    {
+                                        cells[c.eastNeighbor[0], c.eastNeighbor[1]].step += (c.step + 1);
+                                        cells[c.eastNeighbor[0], c.eastNeighbor[1]].cellState = CellState.Walkway;
+                                        Carve(cells[c.eastNeighbor[0], c.eastNeighbor[1]]);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (CheckForValidPaths(cells[c.eastNeighbor[0], c.eastNeighbor[1]], 'w'))
+                            {
+                                if (c.cellState == CellState.Walkway)
+                                {
+                                    cells[c.eastNeighbor[0], c.eastNeighbor[1]].step += (c.step + 1);
+                                }
+                                cells[c.eastNeighbor[0], c.eastNeighbor[1]].cellState = CellState.Walkway;
+                            }
+                            Carve(cells[c.eastNeighbor[0], c.eastNeighbor[1]]);
+                        }
+                    }
+                }
+                else if (dirList[ri] == 'w')
+                {
+                    if (c.westNeighbor[0] > -1)
+                    {
+                        if (cells[c.westNeighbor[0], c.westNeighbor[1]].isAssigned)
+                        {
+                            if (cells[c.westNeighbor[0], c.westNeighbor[1]].cellState == CellState.Wall)
+                            {
+                                if (c.cellState == CellState.Walkway)
+                                {
+                                    if (CheckForValidPaths(cells[c.westNeighbor[0], c.westNeighbor[1]], 'e'))
+                                    {
+                                        cells[c.westNeighbor[0], c.westNeighbor[1]].step += (c.step + 1);
+                                        cells[c.westNeighbor[0], c.westNeighbor[1]].cellState = CellState.Walkway;
+                                        Carve(cells[c.westNeighbor[0], c.westNeighbor[1]]);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (CheckForValidPaths(cells[c.westNeighbor[0], c.westNeighbor[1]], 'e'))
+                            {
+                                if (c.cellState == CellState.Walkway)
+                                {
+                                    cells[c.westNeighbor[0], c.westNeighbor[1]].step += (c.step + 1);
+                                }
+                                cells[c.westNeighbor[0], c.westNeighbor[1]].cellState = CellState.Walkway;
+                            }
+                            Carve(cells[c.westNeighbor[0], c.westNeighbor[1]]);
+                        }
+                    }
+                }
+
+                dirList.RemoveAt(ri);
+                ri = Random.Range(0, dirList.Count);
+                ri = Random.Range(0, dirList.Count);
             }
         }
     }
 
-
-    private void CheckForValidPositions(Cell c)
+    private bool CheckForValidPaths(Cell c, char orgn)
     {
-        validPositions.Clear();
-        bool isValid = false;
-        foreach (Cell n in c._neighbors)
+
+
+        bool isPath = true;
+        Cell nn = null;
+        Cell sn = null;
+        Cell en = null; ;
+        Cell wn = null;
+
+        if(c.northNeighbor[0]>=0)
         {
-            foreach(Cell subN in n._neighbors)
+            nn = cells[c.northNeighbor[0], c.northNeighbor[1]];
+        }
+        if (c.southNeighbor[0] >= 0)
+        {
+            sn = cells[c.southNeighbor[0], c.southNeighbor[1]];
+        }
+        if (c.eastNeighbor[0] >= 0)
+        {
+            en = cells[c.eastNeighbor[0], c.eastNeighbor[1]];
+        }
+        if (c.westNeighbor[0] >= 0)
+        {
+            wn = cells[c.westNeighbor[0], c.westNeighbor[1]];
+        }
+
+        if (true)
+        {
+            /*if (orgn == 's' || orgn == 'n')
             {
-                isValid = true;
-                if (subN != c && subN != n)
+                if (nn != null && sn != null)
                 {
-                    if (subN._isWalkway)
-                        isValid = false;
+                    if ((nn.cellState == CellState.Walkway && (!HasWalkwayInDir(wn, 'n') && !HasWalkwayInDir(en, 'n')))
+                        || (sn.cellState == CellState.Walkway && (!HasWalkwayInDir(wn, 's') && !HasWalkwayInDir(en, 's')))
+                        || (sn.cellState != CellState.Walkway && nn.cellState != CellState.Walkway)
+                        )
+                    {
+                        isPath = true;
+                    }
+                }
+                else if (sn != null)
+                {
+                    if (sn.cellState == CellState.Walkway && (!HasWalkwayInDir(wn, 's') && !HasWalkwayInDir(en, 's')))
+                    {
+                        isPath = true;
+                    }
+                }
+                else if (nn != null )
+                {
+
+                    if (nn.cellState == CellState.Walkway && (!HasWalkwayInDir(wn, 'n') && !HasWalkwayInDir(en, 'n')))
+                    {
+                        isPath = true;
+                    }
+                }
+                else
+                {
+                    isPath = true;
+                }
+
+            }
+            else if (orgn == 'e' || orgn == 'w')
+            {
+                if(en != null && wn != null)
+                {
+                    if ((wn.cellState == CellState.Walkway && (!HasWalkwayInDir(nn, 'w') && !HasWalkwayInDir(sn, 'w')))
+                        || (en.cellState == CellState.Walkway && (!HasWalkwayInDir(nn, 'e') && !HasWalkwayInDir(sn, 'e')))
+                        || (en.cellState != CellState.Walkway && wn.cellState != CellState.Walkway)
+                        )
+                    {
+                        isPath = true;
+                    }
+                }
+                else if (wn != null)
+                {
+                    if (wn.cellState == CellState.Walkway && (!HasWalkwayInDir(nn, 'w') && !HasWalkwayInDir(sn, 'w')))
+                    {
+                        isPath = true;
+                    }
+                }
+                else if (en != null)
+                {
+
+                    if (en.cellState == CellState.Walkway && (!HasWalkwayInDir(nn, 'e') && !HasWalkwayInDir(sn, 'e')))
+                    {
+                        isPath = true;
+                    }
+                }
+                else 
+                {
+                    isPath = true;
+                }
+            }*/
+        }
+
+
+
+        if (nn != null && sn != null)
+        {
+            if (nn.cellState == CellState.Walkway && sn.cellState == CellState.Walkway)
+            {
+                if (HasWalkwayInDir(wn, 'n') || HasWalkwayInDir(en, 'n') || HasWalkwayInDir(wn, 's') || HasWalkwayInDir(en, 's'))
+                {
+                    isPath = false;
                 }
             }
-            if (isValid)
-                validPositions.Add(n);
+            else if (nn.cellState == CellState.Walkway)
+            {
+                if (HasWalkwayInDir(wn, 'n') || HasWalkwayInDir(en, 'n'))
+                {
+                    isPath = false;
+                }
+            }
+            else if (sn.cellState == CellState.Walkway)
+            {
+                if (HasWalkwayInDir(wn, 's') || HasWalkwayInDir(en, 's'))
+                {
+                    isPath = false;
+                }
+            }
         }
+        else if (nn != null)
+        {
+            if (nn.cellState == CellState.Walkway)
+            {
+                if (HasWalkwayInDir(wn, 'n') || HasWalkwayInDir(en, 'n'))
+                {
+                    isPath = false;
+                }
+            }
+        }
+        else if (sn != null)
+        {
+
+            if (sn.cellState == CellState.Walkway)
+            {
+                if (HasWalkwayInDir(wn, 's') || HasWalkwayInDir(en, 's'))
+                {
+                    isPath = false;
+                }
+            }
+        }
+
+        if (en != null && wn != null)
+        {
+            if (en.cellState == CellState.Walkway && wn.cellState == CellState.Walkway)
+            {
+
+                if (HasWalkwayInDir(nn, 'e') || HasWalkwayInDir(sn, 'e') || HasWalkwayInDir(sn, 'w') || HasWalkwayInDir(nn, 'w'))
+                {
+                    isPath = false;
+                }
+            }
+            else if (en.cellState == CellState.Walkway)
+            {
+                if (HasWalkwayInDir(nn, 'e') || HasWalkwayInDir(sn, 'e'))
+                {
+                    isPath = false;
+                }
+            }
+            else if (wn.cellState == CellState.Walkway)
+            {
+                if (HasWalkwayInDir(nn, 'w')  || HasWalkwayInDir(sn, 'w'))
+                {
+                    isPath = false;
+                }
+            }
+        }
+        else if (en != null)
+        {
+            if (en.cellState == CellState.Walkway)
+            {
+                if (HasWalkwayInDir(nn, 'e') || HasWalkwayInDir(sn, 'e'))
+                {
+                    isPath = false;
+                }
+            }
+
+        }
+        else if (wn != null)
+        {
+            if (wn.cellState == CellState.Walkway)
+            {
+                if (HasWalkwayInDir(nn, 'w') || HasWalkwayInDir(sn, 'w'))
+                {
+                    isPath = false;
+                }
+            }
+        }   
+
+        int randomInt = Random.Range(0, 100);
+        randomInt = Random.Range(0, 100);
+        /*if (c.isAssigned) 
+        {
+            if (randomInt > 85)
+                isPath = false;
+        }*/
+        return isPath;
     }
 
-    private Cell PickPosition(List<Cell> cells)
+    public bool HasWalkwayInDir(Cell c, char dir)
     {
-        Shuffle(cells);
-        int randomInt = Random.Range(0, cells.Count - 1);
-        cells[randomInt]._isWalkway = true;
-        return cells[randomInt];
+        if (c == null)
+        {
+            return false;
+        }
+        if (dir == 'n')
+        {
+            if (c.northNeighbor[0] > -1)
+            {
+                if (cells[c.northNeighbor[0], c.northNeighbor[1]].cellState == CellState.Walkway)
+                {
+                    return true;
+                }
+            }
+        }
+        else if (dir == 's')
+        {
+            if (c.southNeighbor[0] > -1)
+            {
+                if (cells[c.southNeighbor[0], c.southNeighbor[1]].cellState == CellState.Walkway)
+                {
+                    return true;
+                }
+            }
+        }
+        else if (dir == 'e')
+        {
+            if (c.eastNeighbor[0] > -1)
+            {
+                if (cells[c.eastNeighbor[0], c.eastNeighbor[1]].cellState == CellState.Walkway)
+                {
+                    return true;
+                }
+            }
+        }
+        else if (dir == 'w')
+        {
+            if (c.westNeighbor[0] > -1)
+            {
+                if (cells[c.westNeighbor[0], c.westNeighbor[1]].cellState == CellState.Walkway)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    private void OnDrawGizmosSelected()
+    { 
+        if(cells.GetLength(0) > 0)
+        {
+            for(int i = 0; i < width; i++)
+            {
+                for(int j = 0; j < height; j++)
+                {
+                    Cell c = cells[i,j];
+                    if (c.cellState == CellState.Start)
+                    {
+                        Gizmos.color = Color.white;
+                        Gizmos.DrawSphere(c._location, 0.25f);
+                    }
+                    else if (c.cellState == CellState.Walkway)
+                    {
+                        Gizmos.color = Color.black;
+                        Gizmos.DrawSphere(c._location, 0.25f);
+                    }
+                    else if (c.cellState == CellState.Exit)
+                    {
+                        Gizmos.color = Color.green;
+                        Gizmos.DrawSphere(c._location, 0.25f);
+                    }
+                    else
+                    {
+                        Gizmos.color = Color.red;
+                        Gizmos.DrawSphere(c._location, 0.25f);
+                    }
+                }
+            }
+        }
     }
 
     private void Shuffle(List<Cell> alpha)
