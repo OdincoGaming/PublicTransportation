@@ -4,42 +4,48 @@ using UnityEngine;
 
 public class Cell : ScriptableObject
 {
-    public List<Cell> _neighbors = new List<Cell>();
+    public int xPos = -1;
+    public int zPos = -1;
+    public int[] northNeighbor = { -1, -1 };
+    public int[] southNeighbor = { -1, -1 };
+    public int[] westNeighbor = { -1, -1 };
+    public int[] eastNeighbor = { -1, -1 };
     public Vector3 _location;
-    public bool _isWalkway;
-    public bool _isEndPoint;
-    public bool _isExit;
-    public bool _isSpawn;
+    public CellState cellState = CellState.Wall;
+    public bool isAssigned = false;
+    public int step = 0;
+    public char originDir = ' ';
 
-    public void PopulateNeighbors(List<Cell> cells)
+    public void CreatTile(char od)
     {
-        //Vector3 nextColumnNextRow = new Vector3(_location.x + 1, 0, _location.z + 1);
-        //Vector3 nextColumnPreviousRow = new Vector3(_location.x + 1, 0, _location.z - 1);
-        Vector3 nextColumnSameRow = new Vector3(_location.x + 1, 0, _location.z);
+        originDir = od;
+    }
 
-        //Vector3 previousColumnNextRow = new Vector3(_location.x - 1, 0, _location.z + 1);
-       //Vector3 previousColumnPreviousRow = new Vector3(_location.x - 1, 0, _location.z - 1);
-        Vector3 previousColumnSameRow = new Vector3(_location.x - 1, 0, _location.z);
-
-        Vector3 sameColumnNextRow = new Vector3(_location.x, 0, _location.z + 1);
-        Vector3 sameColumnPreviousRow = new Vector3(_location.x, 0, _location.z - 1);
-
-        List<Vector3> posibleNeighbors = new List<Vector3>
+    public void PopulateNeighbors(Cell[,] cells)
+    {
+        if (xPos + 1 < cells.GetLength(0))
         {
-            //nextColumnNextRow,
-            //nextColumnPreviousRow,
-            nextColumnSameRow,
-            //previousColumnNextRow,
-            //previousColumnPreviousRow,
-            previousColumnSameRow,
-            sameColumnNextRow,
-            sameColumnPreviousRow
-        };
-
-        foreach(Cell c in cells)
+            northNeighbor = new int[] { xPos + 1, zPos };
+        }
+        if (xPos - 1 >= 0)
         {
-            if (posibleNeighbors.Contains(c._location))
-                _neighbors.Add(c);
+            southNeighbor = new int[] { xPos - 1, zPos };
+        }
+        if (zPos + 1 < cells.GetLength(1))
+        {
+            eastNeighbor = new int[] { xPos, zPos + 1 };
+        }
+        if (zPos - 1 >= 0)
+        {
+            westNeighbor = new int[] { xPos, zPos - 1 };
         }
     }
+}
+
+public enum CellState
+{
+    Wall,
+    Walkway,
+    Start,
+    Exit
 }
