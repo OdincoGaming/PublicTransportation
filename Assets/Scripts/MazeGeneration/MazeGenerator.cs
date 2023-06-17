@@ -73,23 +73,6 @@ public class MazeGenerator : MonoBehaviour
         {
             Carve(cells[0, 0]);
         }
-        for(int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if(cells[i,j].cellState == CellState.Wall)
-                {
-                    if(cells[i,j].cellState == CellState.Wall)
-                    {
-                        if (CheckForValidPaths(cells[i, j], 's'))
-                        {
-                            cells[i,j].cellState = CellState.Walkway;
-                        }
-
-                    }
-                }
-            }
-        }
     }
 
     private void Carve(Cell c)
@@ -112,7 +95,7 @@ public class MazeGenerator : MonoBehaviour
                             {
                                 if (c.cellState == CellState.Walkway)
                                 {
-                                    if (CheckForValidPaths(cells[c.northNeighbor[0], c.northNeighbor[1]], 's'))
+                                    if (CheckForValidPaths(cells[c.northNeighbor[0], c.northNeighbor[1]]))
                                     {
                                         cells[c.northNeighbor[0], c.northNeighbor[1]].step += (c.step + 1);
                                         cells[c.northNeighbor[0], c.northNeighbor[1]].cellState = CellState.Walkway;
@@ -123,7 +106,7 @@ public class MazeGenerator : MonoBehaviour
                         }
                         else
                         {
-                            if (CheckForValidPaths(cells[c.northNeighbor[0], c.northNeighbor[1]], 's'))
+                            if (CheckForValidPaths(cells[c.northNeighbor[0], c.northNeighbor[1]]))
                             {
                                 if (c.cellState == CellState.Walkway)
                                 {
@@ -145,7 +128,7 @@ public class MazeGenerator : MonoBehaviour
                             {
                                 if (c.cellState == CellState.Walkway)
                                 {
-                                    if (CheckForValidPaths(cells[c.southNeighbor[0], c.southNeighbor[1]], 'n'))
+                                    if (CheckForValidPaths(cells[c.southNeighbor[0], c.southNeighbor[1]]))
                                     {
                                         cells[c.southNeighbor[0], c.southNeighbor[1]].step += (c.step + 1);
                                         cells[c.southNeighbor[0], c.southNeighbor[1]].cellState = CellState.Walkway;
@@ -156,7 +139,7 @@ public class MazeGenerator : MonoBehaviour
                         }
                         else
                         {
-                            if (CheckForValidPaths(cells[c.southNeighbor[0], c.southNeighbor[1]], 'n'))
+                            if (CheckForValidPaths(cells[c.southNeighbor[0], c.southNeighbor[1]]))
                             {
                                 if (c.cellState == CellState.Walkway)
                                 {
@@ -178,7 +161,7 @@ public class MazeGenerator : MonoBehaviour
                             {
                                 if (c.cellState == CellState.Walkway)
                                 {
-                                    if (CheckForValidPaths(cells[c.eastNeighbor[0], c.eastNeighbor[1]], 'w'))
+                                    if (CheckForValidPaths(cells[c.eastNeighbor[0], c.eastNeighbor[1]]))
                                     {
                                         cells[c.eastNeighbor[0], c.eastNeighbor[1]].step += (c.step + 1);
                                         cells[c.eastNeighbor[0], c.eastNeighbor[1]].cellState = CellState.Walkway;
@@ -189,7 +172,7 @@ public class MazeGenerator : MonoBehaviour
                         }
                         else
                         {
-                            if (CheckForValidPaths(cells[c.eastNeighbor[0], c.eastNeighbor[1]], 'w'))
+                            if (CheckForValidPaths(cells[c.eastNeighbor[0], c.eastNeighbor[1]]))
                             {
                                 if (c.cellState == CellState.Walkway)
                                 {
@@ -211,7 +194,7 @@ public class MazeGenerator : MonoBehaviour
                             {
                                 if (c.cellState == CellState.Walkway)
                                 {
-                                    if (CheckForValidPaths(cells[c.westNeighbor[0], c.westNeighbor[1]], 'e'))
+                                    if (CheckForValidPaths(cells[c.westNeighbor[0], c.westNeighbor[1]]))
                                     {
                                         cells[c.westNeighbor[0], c.westNeighbor[1]].step += (c.step + 1);
                                         cells[c.westNeighbor[0], c.westNeighbor[1]].cellState = CellState.Walkway;
@@ -222,7 +205,7 @@ public class MazeGenerator : MonoBehaviour
                         }
                         else
                         {
-                            if (CheckForValidPaths(cells[c.westNeighbor[0], c.westNeighbor[1]], 'e'))
+                            if (CheckForValidPaths(cells[c.westNeighbor[0], c.westNeighbor[1]]))
                             {
                                 if (c.cellState == CellState.Walkway)
                                 {
@@ -242,7 +225,7 @@ public class MazeGenerator : MonoBehaviour
         }
     }
 
-    private bool CheckForValidPaths(Cell c, char orgn)
+    private bool CheckForValidPaths(Cell c)
     {
 
 
@@ -268,77 +251,6 @@ public class MazeGenerator : MonoBehaviour
         {
             wn = cells[c.westNeighbor[0], c.westNeighbor[1]];
         }
-
-        if (true)
-        {
-            /*if (orgn == 's' || orgn == 'n')
-            {
-                if (nn != null && sn != null)
-                {
-                    if ((nn.cellState == CellState.Walkway && (!HasWalkwayInDir(wn, 'n') && !HasWalkwayInDir(en, 'n')))
-                        || (sn.cellState == CellState.Walkway && (!HasWalkwayInDir(wn, 's') && !HasWalkwayInDir(en, 's')))
-                        || (sn.cellState != CellState.Walkway && nn.cellState != CellState.Walkway)
-                        )
-                    {
-                        isPath = true;
-                    }
-                }
-                else if (sn != null)
-                {
-                    if (sn.cellState == CellState.Walkway && (!HasWalkwayInDir(wn, 's') && !HasWalkwayInDir(en, 's')))
-                    {
-                        isPath = true;
-                    }
-                }
-                else if (nn != null )
-                {
-
-                    if (nn.cellState == CellState.Walkway && (!HasWalkwayInDir(wn, 'n') && !HasWalkwayInDir(en, 'n')))
-                    {
-                        isPath = true;
-                    }
-                }
-                else
-                {
-                    isPath = true;
-                }
-
-            }
-            else if (orgn == 'e' || orgn == 'w')
-            {
-                if(en != null && wn != null)
-                {
-                    if ((wn.cellState == CellState.Walkway && (!HasWalkwayInDir(nn, 'w') && !HasWalkwayInDir(sn, 'w')))
-                        || (en.cellState == CellState.Walkway && (!HasWalkwayInDir(nn, 'e') && !HasWalkwayInDir(sn, 'e')))
-                        || (en.cellState != CellState.Walkway && wn.cellState != CellState.Walkway)
-                        )
-                    {
-                        isPath = true;
-                    }
-                }
-                else if (wn != null)
-                {
-                    if (wn.cellState == CellState.Walkway && (!HasWalkwayInDir(nn, 'w') && !HasWalkwayInDir(sn, 'w')))
-                    {
-                        isPath = true;
-                    }
-                }
-                else if (en != null)
-                {
-
-                    if (en.cellState == CellState.Walkway && (!HasWalkwayInDir(nn, 'e') && !HasWalkwayInDir(sn, 'e')))
-                    {
-                        isPath = true;
-                    }
-                }
-                else 
-                {
-                    isPath = true;
-                }
-            }*/
-        }
-
-
 
         if (nn != null && sn != null)
         {
@@ -446,6 +358,10 @@ public class MazeGenerator : MonoBehaviour
     public bool HasWalkwayInDir(Cell c, char dir)
     {
         if (c == null)
+        {
+            return false;
+        }
+        if(c.cellState == CellState.Wall)
         {
             return false;
         }

@@ -167,12 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64be7e26cf9a1514a8fc1ac4a0ef9442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 10
-  height: 10
+  width: 30
+  height: 4
   xDensity: 0
   zDensity: 0
   possibleExits:
-  - 0-3
+  - 29-3
   cellsRemaining: []
   validPositions: []
 --- !u!1 &705507993
