@@ -167,13 +167,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64be7e26cf9a1514a8fc1ac4a0ef9442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 10
-  height: 10
-  possibleExits: 120000001b000000240000002d00000036000000
-  cells: []
+  width: 4
+  height: 30
+  xDensity: 0
+  zDensity: 0
+  possibleExits:
+  - 0-10
   cellsRemaining: []
-  cellsTouched: []
-  cellPositions: []
   validPositions: []
 --- !u!1 &370565036
 GameObject:
