@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MazeGenSpawner : MonoBehaviour
+public class MazeGeneratorNew : MonoBehaviour
 {
     public int width;
     public int height;
@@ -16,13 +16,6 @@ public class MazeGenSpawner : MonoBehaviour
     private void Awake()
     {
         DrawGrid();
-    }
-
-    private IEnumerator CarveExitEnum()
-    {
-        yield return new WaitForSeconds(2.0f);
-        CarveExit();
-
     }
 
 
@@ -56,10 +49,10 @@ public class MazeGenSpawner : MonoBehaviour
                 validPositions.Add(cells[i, j]);
             }
         }
-        StartCoroutine(CarveExitEnum());
+        Generate();
     }
 
-    private void CarveExit()
+    private void Generate()
     {
         List<Cell> exits = new List<Cell>();
         if (possibleExits.Count > 0)
@@ -74,39 +67,15 @@ public class MazeGenSpawner : MonoBehaviour
             int randomInt = Random.Range(0, exits.Count - 1);
 
             exits[randomInt].cellState = CellState.Exit;
-            Carve(exits[randomInt]);
+            Iterate(exits[randomInt]);
         }
         else
         {
-            Carve(cells[0, 0]);
+            Iterate(cells[0, 0]);
         }
-        HandleSpawnPoints();
     }
 
-    private void HandleSpawnPoints()
-    {
-        List<SpawnPointBehaviour> li = new List<SpawnPointBehaviour>(GameObject.FindObjectsOfType<SpawnPointBehaviour>());
-
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                string des = i + "-" + j;
-                foreach (SpawnPointBehaviour spb in li)
-                {
-                    if (des == spb.designation)
-                    {
-                        spb.Respond(cells[i, j]);
-                        li.Remove(spb);
-                        break;
-                    }
-                }
-            }
-        }
-
-    }
-
-    private void Carve(Cell c)
+    private void Iterate(Cell c)
     {
         c.isAssigned = true;
         List<char> dirList = new List<char> { 'n', 's', 'w', 'e' };
@@ -130,7 +99,7 @@ public class MazeGenSpawner : MonoBehaviour
                                     {
                                         cells[c.northNeighbor[0], c.northNeighbor[1]].step += (c.step + 1);
                                         cells[c.northNeighbor[0], c.northNeighbor[1]].cellState = CellState.Walkway;
-                                        Carve(cells[c.northNeighbor[0], c.northNeighbor[1]]);
+                                        Iterate(cells[c.northNeighbor[0], c.northNeighbor[1]]);
                                     }
                                 }
                             }
@@ -145,7 +114,7 @@ public class MazeGenSpawner : MonoBehaviour
                                 }
                                 cells[c.northNeighbor[0], c.northNeighbor[1]].cellState = CellState.Walkway;
                             }
-                            Carve(cells[c.northNeighbor[0], c.northNeighbor[1]]);
+                            Iterate(cells[c.northNeighbor[0], c.northNeighbor[1]]);
                         }
                     }
                 }
@@ -163,9 +132,8 @@ public class MazeGenSpawner : MonoBehaviour
                                     {
                                         cells[c.southNeighbor[0], c.southNeighbor[1]].step += (c.step + 1);
                                         cells[c.southNeighbor[0], c.southNeighbor[1]].cellState = CellState.Walkway;
-                                        Carve(cells[c.southNeighbor[0], c.southNeighbor[1]]);
                                     }
-                                    
+                                    Iterate(cells[c.southNeighbor[0], c.southNeighbor[1]]);
                                 }
                             }
                         }
@@ -179,7 +147,7 @@ public class MazeGenSpawner : MonoBehaviour
                                 }
                                 cells[c.southNeighbor[0], c.southNeighbor[1]].cellState = CellState.Walkway;
                             }
-                            Carve(cells[c.southNeighbor[0], c.southNeighbor[1]]);
+                            Iterate(cells[c.southNeighbor[0], c.southNeighbor[1]]);
                         }
                     }
                 }
@@ -197,7 +165,7 @@ public class MazeGenSpawner : MonoBehaviour
                                     {
                                         cells[c.eastNeighbor[0], c.eastNeighbor[1]].step += (c.step + 1);
                                         cells[c.eastNeighbor[0], c.eastNeighbor[1]].cellState = CellState.Walkway;
-                                        Carve(cells[c.eastNeighbor[0], c.eastNeighbor[1]]);
+                                        Iterate(cells[c.eastNeighbor[0], c.eastNeighbor[1]]);
                                     }
                                 }
                             }
@@ -212,7 +180,7 @@ public class MazeGenSpawner : MonoBehaviour
                                 }
                                 cells[c.eastNeighbor[0], c.eastNeighbor[1]].cellState = CellState.Walkway;
                             }
-                            Carve(cells[c.eastNeighbor[0], c.eastNeighbor[1]]);
+                            Iterate(cells[c.eastNeighbor[0], c.eastNeighbor[1]]);
                         }
                     }
                 }
@@ -230,7 +198,7 @@ public class MazeGenSpawner : MonoBehaviour
                                     {
                                         cells[c.westNeighbor[0], c.westNeighbor[1]].step += (c.step + 1);
                                         cells[c.westNeighbor[0], c.westNeighbor[1]].cellState = CellState.Walkway;
-                                        Carve(cells[c.westNeighbor[0], c.westNeighbor[1]]);
+                                        Iterate(cells[c.westNeighbor[0], c.westNeighbor[1]]);
                                     }
                                 }
                             }
@@ -245,7 +213,7 @@ public class MazeGenSpawner : MonoBehaviour
                                 }
                                 cells[c.westNeighbor[0], c.westNeighbor[1]].cellState = CellState.Walkway;
                             }
-                            Carve(cells[c.westNeighbor[0], c.westNeighbor[1]]);
+                            Iterate(cells[c.westNeighbor[0], c.westNeighbor[1]]);
                         }
                     }
                 }
@@ -379,8 +347,11 @@ public class MazeGenSpawner : MonoBehaviour
 
         int randomInt = Random.Range(0, 100);
         randomInt = Random.Range(0, 100);
-        if (randomInt > 25)
-            isPath = false;
+        /*if (c.isAssigned) 
+        {
+            if (randomInt > 85)
+                isPath = false;
+        }*/
         return isPath;
     }
 

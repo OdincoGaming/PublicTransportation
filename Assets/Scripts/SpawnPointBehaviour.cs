@@ -4,34 +4,23 @@ using UnityEngine;
 
 public class SpawnPointBehaviour : MonoBehaviour
 {
-    [SerializeField] private string designation;
-    [SerializeField] private SpawnPointEventChannelSO channel;
+    public string designation;
+
     [SerializeField] private SpawnablesSO spawnables;
     private void Awake()
     {
-        designation = transform.parent.name + "-" + transform.name;
+        designation = transform.name + "-" + transform.parent.name;
+        GetComponent<CapsuleCollider>().enabled = false;
     }
 
-    private void OnEnable()
-    {
-        channel.OnEventRaised += Respond;
-    }
-
-    private void OnDisable()
-    {
-        channel.OnEventRaised -= Respond;
-    }
-
-    private void Respond(Cell cell)
+    public void Respond(Cell cell)
     {
         if (cell.cellState == CellState.Wall)
         {
-            string des = cell.xPos + "-" + cell.zPos;
-            if (des == designation)
-            {
-                int randomInt = Random.Range(0, spawnables.possibleSpawns.Count - 1);
-                Instantiate(spawnables.possibleSpawns[randomInt], transform.position, transform.rotation);
-            }
+            int randomInt = Random.Range(0, spawnables.possibleSpawns.Count - 1);
+            GameObject go = Instantiate(spawnables.possibleSpawns[randomInt], transform.position, transform.rotation);
+            go.transform.SetParent(this.transform);
+            GetComponent<CapsuleCollider>().enabled = true;
         }
     }
 }
