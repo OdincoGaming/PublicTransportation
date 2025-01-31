@@ -111,7 +111,7 @@ namespace RootMotion.Dynamics
             if (targetRoot.gameObject.layer == gameObject.layer) Debug.LogError("Target Root is on the same layer as PuppetMasterLite! Please use different layers and make sure collisions between those layers are disabled in the Layer Collision Matrix.", transform);
 
             targetAnimator = targetRoot.GetComponentInChildren<Animator>();
-            if (targetAnimator != null && targetAnimator.updateMode == AnimatorUpdateMode.AnimatePhysics) updateMode = UpdateMode.Fixed;
+            if (targetAnimator != null && targetAnimator.updateMode == AnimatorUpdateMode.Fixed) updateMode = UpdateMode.Fixed;
 
             foreach (MuscleLite m in muscles)
             {
@@ -122,7 +122,7 @@ namespace RootMotion.Dynamics
 
         private void Update()
         {
-            updateMode = targetAnimator == null || targetAnimator.updateMode != AnimatorUpdateMode.AnimatePhysics ? UpdateMode.Normal : UpdateMode.Fixed;
+            updateMode = targetAnimator == null || targetAnimator.updateMode != AnimatorUpdateMode.Fixed ? UpdateMode.Normal : UpdateMode.Fixed;
             if (updateMode == UpdateMode.Fixed) return;
 
             FixTargetTransforms();
