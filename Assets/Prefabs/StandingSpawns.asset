@@ -15,11 +15,4 @@ MonoBehaviour:
   _guid: 4aed9407ffda796479efb509ecebb875
   description: 
   possibleSpawns:
-  - {fileID: 3974872542698847976, guid: 187c263698ed508429094099ce5e4464, type: 3}
-  - {fileID: 3974872542698847976, guid: ebcc4e7c11bad1d4abd45b411b3fe532, type: 3}
-  - {fileID: 3974872542698847976, guid: 878620665ef24c840aa2fae7936c1bc3, type: 3}
-  - {fileID: 3974872542698847976, guid: b4621ab2d61a3c747a85dc81bf703d6e, type: 3}
-  - {fileID: 3974872542698847976, guid: 203ed65b2702d4e49b1eb11e4adc1bb0, type: 3}
-  - {fileID: 3974872542698847976, guid: 0eca77bce37408744ae2b65722636910, type: 3}
-  - {fileID: 3974872542698847976, guid: adce842233d46f543b3bcdf3463092f1, type: 3}
   - {fileID: 3974872542698847976, guid: 203ed65b2702d4e49b1eb11e4adc1bb0, type: 3}

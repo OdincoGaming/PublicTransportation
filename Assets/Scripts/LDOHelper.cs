@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using RootMotion;
 using RootMotion.Dynamics;
+using Unity.VisualScripting;
 
 public class LDOHelper : MonoBehaviour
 {
     [SerializeField] private List<GameObject> gos;
-
+    private bool isTouchingAtStart = false;
     public void ToggleGameObjects(bool state)
     {
         foreach(GameObject go in gos)
@@ -15,5 +16,18 @@ public class LDOHelper : MonoBehaviour
             go.SetActive(state);
         }
     }
-
+    private void Start()
+    {
+        StartCoroutine(DelayedDisableOnStart());
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        isTouchingAtStart = true;
+    }
+    IEnumerator DelayedDisableOnStart()
+    {
+        yield return new WaitForEndOfFrame();
+        if (!isTouchingAtStart)
+            ToggleGameObjects(false);
+    }
 }
