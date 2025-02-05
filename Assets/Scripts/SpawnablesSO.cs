@@ -11,4 +11,5 @@ using System.Collections.Generic;
 public class SpawnablesSO : DescriptionBaseSO
 {
     public List<GameObject> possibleSpawns;
+    public bool isSitting = false;
 }

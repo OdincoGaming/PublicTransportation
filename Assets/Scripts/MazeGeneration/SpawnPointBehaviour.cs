@@ -12,7 +12,16 @@ public class SpawnPointBehaviour : MonoBehaviour
     {
         designation = transform.name + "-" + transform.parent.name;
         designationVector = new(int.Parse(transform.name), int.Parse(transform.parent.name));
-        GetComponent<CapsuleCollider>().enabled = false;
+        CapsuleCollider capsColl = GetComponent<CapsuleCollider>();
+        capsColl.enabled = false;
+        if (spawnables.isSitting)
+        {
+            capsColl.radius = .24f;
+        }
+        else
+        {
+            capsColl.radius = .2435f;
+        }
         GetComponent<SphereCollider>().enabled = false;
     }
 

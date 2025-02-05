@@ -201,7 +201,6 @@ GameObject:
   - component: {fileID: 7429374764017484794}
   - component: {fileID: 516051851317517028}
   - component: {fileID: 567314906590699188}
-  - component: {fileID: 1723046566241985562}
   m_Layer: 8
   m_Name: defaultLookPos
   m_TagString: Untagged
@@ -277,27 +276,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1723046566241985562
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3156341652649735150}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3415245439044716271
 GameObject:
   m_ObjectHideFlags: 0
@@ -3793,8 +3771,8 @@ MonoBehaviour:
   target: {fileID: 0}
   isLooking: 0
   animator: {fileID: 4506740871269599204}
-  lookAtWeightMinMax: {x: 0.5, y: 1}
-  lookAtSmoothTime: 0.5
+  lookAtWeightMinMax: {x: 0.51, y: 1}
+  lookAtSmoothTime: 0.25
   smoothTime: 0.5
   defaultTarget: {fileID: 7429374764017484794}
 --- !u!1 &4506740871290482807

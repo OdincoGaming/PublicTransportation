@@ -212,7 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4742304020716112918}
   - component: {fileID: 8338320577380139824}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: male_worksuit01Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 132942968274029650}
   - component: {fileID: 5799326750217356810}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vnecktopMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -999,7 +999,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4540487643868533173}
   - component: {fileID: 727186152643081201}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shoes02Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1561,7 +1561,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6892138004554626857}
   - component: {fileID: 5275570711079136403}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mens_trouser_f_elv1Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1660,7 +1660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8768455329270147799}
   - component: {fileID: 7894793305378559364}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: botas_102Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2194,7 +2194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5030614294535340590}
   - component: {fileID: 5930243273654881075}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pantsMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2481,7 +2481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 222044121278172864}
   - component: {fileID: 3844478869100089069}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: PuppetMaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3107,7 +3107,7 @@ GameObject:
   - component: {fileID: 425354441369691942}
   - component: {fileID: 434619164229720077}
   - component: {fileID: 8965015769263569515}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: forearm.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3439,7 +3439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4974512596584733919}
   - component: {fileID: 7093533998732135453}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jean_shortsMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3897,7 +3897,7 @@ GameObject:
   - component: {fileID: 7464454830068608927}
   - component: {fileID: 7806717351076380117}
   - component: {fileID: 8291634546613442714}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: forearm.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4238,7 +4238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1040944471546966723}
   - component: {fileID: 6803591056169045599}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Foot Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4325,7 +4325,7 @@ GameObject:
   - component: {fileID: 5716850320582888551}
   - component: {fileID: 1822850346982731395}
   - component: {fileID: 8041545534971821678}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: upper_arm.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4542,7 +4542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3651103829815716064}
   - component: {fileID: 4624611026614931084}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sports_Tights_1Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5056,7 +5056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5449701976271454737}
   - component: {fileID: 6315174144760654456}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: m_wifebeater_elv1Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5269,7 +5269,6 @@ GameObject:
   - component: {fileID: 664633062446049952}
   - component: {fileID: 6484323657674174229}
   - component: {fileID: 2571330640310819815}
-  - component: {fileID: 4116103138085595599}
   m_Layer: 8
   m_Name: defaultLookPos  (1)
   m_TagString: Untagged
@@ -5345,27 +5344,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4116103138085595599
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3029023421668933487}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3055142255306519969
 GameObject:
   m_ObjectHideFlags: 0
@@ -5376,7 +5354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8074817282794638952}
   - component: {fileID: 5587133975355498770}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pantsvikingMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5475,7 +5453,7 @@ GameObject:
   - component: {fileID: 7762017570537348538}
   - component: {fileID: 7636298589285949376}
   - component: {fileID: 569737637191812566}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: hand.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5760,7 +5738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4306507786550563945}
   - component: {fileID: 2817202960947978673}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sweater_fishermanMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5865,7 +5843,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8356394496271002712}
   - component: {fileID: 5645892834966674780}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shoes01Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5959,7 +5937,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8814105699833100938}
   - component: {fileID: 6969635611051280965}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sherpa_hatMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6197,7 +6175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3820754206179930802}
   - component: {fileID: 8746072379032637957}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bikehelmetMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6291,7 +6269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7919354721683715749}
   - component: {fileID: 2606367043670018153}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: elvs_unisex_chef_hat1Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6594,7 +6572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2115062053636606916}
   - component: {fileID: 2682078347008268633}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bootsvikingMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6688,7 +6666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1782799640115047281}
   - component: {fileID: 7939556293313236958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: halfbootsMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6846,7 +6824,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5213375822230062866}
   - component: {fileID: 5493671210233135896}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fedora_cockedMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6935,7 +6913,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2282669341219142311}
   - component: {fileID: 2806208911642705875}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sunvisorMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7028,7 +7006,7 @@ GameObject:
   - component: {fileID: 2603526104375108820}
   - component: {fileID: 3543163544487840576}
   - component: {fileID: 751910090339142947}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: foot.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7347,7 +7325,7 @@ GameObject:
   - component: {fileID: 7568999263013885378}
   - component: {fileID: 2373185854320142083}
   - component: {fileID: 4822997870058535512}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: shin.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7836,7 +7814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3281483438753758674}
   - component: {fileID: 7580545333763012997}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sneakersMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8027,7 +8005,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8615767069775791435}
   - component: {fileID: 7855855101948365975}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mens_elv_jeans1fMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8314,7 +8292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 234950570594696854}
   - component: {fileID: 4743169250498069874}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Elvs_winter_puffpant_l2Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8413,7 +8391,7 @@ GameObject:
   - component: {fileID: 7681332614454742703}
   - component: {fileID: 2214744908490930236}
   - component: {fileID: 3752055019088399858}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: hand.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8693,7 +8671,7 @@ GameObject:
   - component: {fileID: 7763933427105253619}
   - component: {fileID: 8497893381187354240}
   - component: {fileID: 3980856390592411023}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: thigh.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8910,7 +8888,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1457378998502733658}
   - component: {fileID: 8907563645110515501}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mens_trouser_f_elv_chrMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9171,7 +9149,7 @@ GameObject:
   - component: {fileID: 6572205617672448781}
   - component: {fileID: 2016957667630992521}
   - component: {fileID: 590988973973825119}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9557,7 +9535,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8465402317853306429}
   - component: {fileID: 5962052028414783266}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Worn_out_sweaterMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9757,7 +9735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 502816903329369378}
   - component: {fileID: 4409813664984594796}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: male_casualsuit01Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9972,7 +9950,7 @@ GameObject:
   - component: {fileID: 4426612211470373029}
   - component: {fileID: 5057026380506568173}
   - component: {fileID: 7754549435307001934}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: thigh.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10157,7 +10135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5363637373270202094}
   - component: {fileID: 8968517112080244993}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shoes05Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10251,7 +10229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 330890978821719926}
   - component: {fileID: 5768088218018062964}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: female_elegantsuit01Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10360,7 +10338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5419187863385190862}
   - component: {fileID: 1823081828243824474}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: male_casualsuit06Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10467,7 +10445,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5203780130684117570}
   - component: {fileID: 7343186332551560648}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dudoc_sandals1Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10561,7 +10539,7 @@ GameObject:
   m_Component:
   - component: {fileID: 923363947901085682}
   - component: {fileID: 3041171945524224013}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: turtle_neckMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11294,7 +11272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 49634200416754458}
   - component: {fileID: 5733885939729406600}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: male-classic-jeansMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11391,7 +11369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4670138876520530505}
   - component: {fileID: 3365545926321855334}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fishing_hat_01Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11708,7 +11686,7 @@ GameObject:
   - component: {fileID: 5776672523718932500}
   - component: {fileID: 4667601246417349692}
   - component: {fileID: 226318217867937104}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11892,7 +11870,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5798985024785902557}
   - component: {fileID: 2730072875332158309}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: male_casualsuit05Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12402,7 +12380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8738691708031398757}
   - component: {fileID: 8080043493929413915}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shoes_loafersMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12561,7 +12539,7 @@ GameObject:
   - component: {fileID: 1669920300365145468}
   - component: {fileID: 8521109218183489318}
   - component: {fileID: 1729668300287366110}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12961,7 +12939,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6665932052543985080}
   - component: {fileID: 379418657284386140}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shoes03Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13118,7 +13096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7252392341714982994}
   - component: {fileID: 1472603528758524430}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Foot Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13171,7 +13149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7805151167159116807}
   - component: {fileID: 2418573063726809186}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: lEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13224,7 +13202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2044556714812271085}
   - component: {fileID: 6758631402625610914}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: cargo_pantsMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13323,7 +13301,7 @@ GameObject:
   - component: {fileID: 3016200791027056169}
   - component: {fileID: 4746887462998271129}
   - component: {fileID: 2917922476722696728}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: upper_arm.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13508,7 +13486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7492600359196533635}
   - component: {fileID: 5947301513504357390}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shoes06Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13675,7 +13653,7 @@ MonoBehaviour:
   animator: {fileID: 5007980013488294585}
   lookAtWeightMinMax: {x: 1, y: 1}
   lookAtSmoothTime: 0.25
-  smoothTime: 0.75
+  smoothTime: 0.5
   defaultTarget: {fileID: 664633062446049952}
 --- !u!114 &9163836047438388491
 MonoBehaviour:
@@ -13826,7 +13804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1781172761856641917}
   - component: {fileID: 1595045558151840466}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fedoraMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14424,7 +14402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8530663709568665315}
   - component: {fileID: 4808916532744739975}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: harvey_vestv1Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14683,7 +14661,7 @@ GameObject:
   - component: {fileID: 655321269541055529}
   - component: {fileID: 2089235203815033796}
   - component: {fileID: 8587070239898025419}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: foot.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14978,7 +14956,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7249659110742346986}
   - component: {fileID: 467905206110725472}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tophat1Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15068,7 +15046,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3931858012201899520}
   - component: {fileID: 4164018341754636991}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: male_elegantsuit01Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15179,7 +15157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4864084179873701019}
   - component: {fileID: 6580006250891424634}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mj_shoesMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15273,7 +15251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7069701769015889585}
   - component: {fileID: 1154190897902859227}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: cl_bowler_hatMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15364,7 +15342,7 @@ GameObject:
   - component: {fileID: 9064718558656869109}
   - component: {fileID: 5641751536112994012}
   - component: {fileID: 7104657821382304665}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: shin.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15581,7 +15559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3109423928318924180}
   - component: {fileID: 7857604245240979559}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: m_trilby_hatMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15670,7 +15648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4729614880125429981}
   - component: {fileID: 6912688371777826752}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: newsboy_capMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15845,7 +15823,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6550844735602531754}
   - component: {fileID: 279564622218223438}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: knitted_sweater_01Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16052,7 +16030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2190437515821642129}
   - component: {fileID: 1586346195545885196}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: knitted_hat_01Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16601,7 +16579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 942693030352355106}
   - component: {fileID: 4920938285478118157}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shoes04Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16806,7 +16784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1971060951607389511}
   - component: {fileID: 686395061556116900}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: legwarmers_hearts_dualMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16900,7 +16878,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3305961368863893380}
   - component: {fileID: 6080411290778627729}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ladieshoodiedown1Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
