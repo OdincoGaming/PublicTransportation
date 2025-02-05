@@ -1,0 +1,45 @@
+# MakeHuman exported MTL
+# www.makehumancommunity.org
+
+
+newmtl old_eurasian_male
+Kd 1 0.95 0.85
+Ks 0.02745 0.02745 0.02745
+d 0
+map_Kd textures/old_eurasian_male_diffuse.png
+map_D textures/old_eurasian_male_diffuse.png
+
+newmtl short03
+Kd 1 1 1
+Ks 0.04706 0.04706 0.04706
+d 0
+map_Kd textures/short03_diffuse.png
+map_D textures/short03_diffuse.png
+
+newmtl Eye_brown
+Kd 1 1 1
+Ks 1 1 1
+d 0
+map_Kd textures/brown_eye.png
+map_D textures/brown_eye.png
+
+newmtl Elvs_winter_puffpant_l2
+Kd 0.5 0.5 0.5
+Ks 0.5 0.5 0.5
+d 0
+map_Kd textures/paddedpantex1teal.png
+map_D textures/paddedpantex1teal.png
+
+newmtl hoodmatsd
+Kd 0.4023 0.08955 0.3928
+Ks 0.5 0.5 0.5
+d 0
+map_Kd textures/hoodietex1.png
+map_D textures/hoodietex1.png
+
+newmtl shoes01
+Kd 1 1 1
+Ks 0.2784 0.2784 0.2784
+d 0
+map_Kd textures/shoes01_diffuse.png
+map_D textures/shoes01_diffuse.png

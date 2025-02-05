@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using DitzelGames.FastIK;
 using NUnit.Framework;
 using UnityEngine;
 

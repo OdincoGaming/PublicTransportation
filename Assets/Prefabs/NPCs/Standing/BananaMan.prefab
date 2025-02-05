@@ -4323,9 +4323,9 @@ MonoBehaviour:
   target: {fileID: 0}
   isLooking: 0
   animator: {fileID: 3974872543617046440}
-  lookAtWeightMinMax: {x: 0.5, y: 1}
-  lookAtSmoothTime: 0.5
-  smoothTime: 0.5
+  lookAtWeightMinMax: {x: 1, y: 1}
+  lookAtSmoothTime: 0.25
+  smoothTime: 0.75
   defaultTarget: {fileID: 2873085887913322437}
 --- !u!1 &3974872543620220268
 GameObject:
