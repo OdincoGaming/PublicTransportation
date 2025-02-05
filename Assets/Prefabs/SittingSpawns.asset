@@ -17,3 +17,4 @@ MonoBehaviour:
   possibleSpawns:
   - {fileID: 4506740871134855919, guid: d50cbae77e195254c8cec306fa1c4224, type: 3}
   - {fileID: 1595826972771685509, guid: 40ef983e2e37d154b924b1703105e060, type: 3}
+  - {fileID: 7211125314227989419, guid: 2da657aa282805540ae9e301d5a0cc62, type: 3}
