@@ -9,12 +9,17 @@ using KinematicCharacterController.Examples;
 public class StartingFromScratch : MonoBehaviour
 {
     [SerializeField] private List<GameObject> player;
+    [SerializeField] private TimerCanvasBehaviour timerCanvasBehaviour;
+    [SerializeField, Min(1)] private float difficulty = 2f;
+
     [SerializeField, Min(1)] private int width;
     [SerializeField, Min(1)] private int height;
     private Cell[,] cells = new Cell[0, 0];
 
     [SerializeField] private List<SpawnPointBehaviour> possibleExitSpawns = new();
+    [SerializeField] private List<DoorBehaviour> doors = new();
     private SpawnPointBehaviour exit;
+
     [SerializeField] private List<SpawnPointBehaviour> possiblePlayerSpawns = new();
     private SpawnPointBehaviour playerStart;
     private CellSPBehaviourPair playerStartCSPB;
@@ -112,6 +117,15 @@ public class StartingFromScratch : MonoBehaviour
                             cells[i, j].cellState = CellState.Exit;
                             CSPBs.Add(new(cells[i, j], spb));
                             cells[i, j].cellState |= CellState.Exit;
+                            foreach (GameObject go in player)
+                            {
+                                go.transform.LookAt(spb.transform.position);
+                            }
+                            foreach(DoorBehaviour door in doors)
+                            {
+                                if (door.doesSPBsContain(spb))
+                                    door.SetAsExit();
+                            }
                             cellsCarved.Add(cells[i, j]);
                         }
                         else
@@ -180,9 +194,19 @@ public class StartingFromScratch : MonoBehaviour
 
     private void HandleSpawns()
     {
+        timerCanvasBehaviour.SetTimetoComplete(CalculateTimeToComplete());
+        //timerCanvasBehaviour.SetPing(exit.transform.position);
         foreach (CellSPBehaviourPair cspb in CSPBs)
         {
             cspb.SpawnInCell();
         }
+    }
+
+    private float CalculateTimeToComplete()
+    {
+        float result = 0;
+        float distance = Vector3.Distance(playerStart.transform.position, exit.transform.position);
+        result = distance * difficulty;
+        return result;
     }
 }
