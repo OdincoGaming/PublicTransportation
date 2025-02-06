@@ -15,10 +15,14 @@ MonoBehaviour:
   _guid: 4aed9407ffda796479efb509ecebb875
   description: 
   possibleSpawns:
+  - {fileID: 9185463450602806898, guid: 5a6c51420c0be9a4d814fc9a13a4c44c, type: 3}
+  - {fileID: 6431258041823416978, guid: a866811928873ab4a91f0e46401915d9, type: 3}
   - {fileID: 3974872542698847976, guid: 203ed65b2702d4e49b1eb11e4adc1bb0, type: 3}
   - {fileID: 6920305098544334910, guid: d8b1ce76f1c07e7489646f7b9a8f7b71, type: 3}
   - {fileID: 5608010198985545274, guid: bf556030fecec2d41a6040eebb6427e4, type: 3}
+  - {fileID: 3647237423377902249, guid: f31e9126b082fed4eb7bc9c84396a6ad, type: 3}
   - {fileID: 9100936185794255389, guid: 42ba6dc9db4892645b8b8f6caeb790e1, type: 3}
-  - {fileID: 9185463450602806898, guid: 5a6c51420c0be9a4d814fc9a13a4c44c, type: 3}
-  - {fileID: 6431258041823416978, guid: a866811928873ab4a91f0e46401915d9, type: 3}
+  - {fileID: 6669342153608164903, guid: 018c615bd887fc044b5bac632a280729, type: 3}
+  - {fileID: 1993359333210995587, guid: 90addacca189e564791232da80ca2379, type: 3}
+  - {fileID: 1085090936484674629, guid: a896560d580db0f41afa14382b5eabc8, type: 3}
   isSitting: 0

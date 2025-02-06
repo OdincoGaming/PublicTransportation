@@ -29,6 +29,7 @@ public class SpawnPointBehaviour : MonoBehaviour
     {
         if (cell.cellState == CellState.Wall)
         {
+            spawnables.possibleSpawns.Shuffle();
             int randomInt = Random.Range(0, spawnables.possibleSpawns.Count);
             GameObject go = Instantiate(spawnables.possibleSpawns[randomInt], transform.position, transform.rotation);
             go.transform.SetParent(this.transform);
