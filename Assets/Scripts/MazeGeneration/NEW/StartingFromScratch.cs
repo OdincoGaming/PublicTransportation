@@ -195,7 +195,7 @@ public class StartingFromScratch : MonoBehaviour
     private void HandleSpawns()
     {
         timerCanvasBehaviour.SetTimetoComplete(CalculateTimeToComplete());
-        //timerCanvasBehaviour.SetPing(exit.transform.position);
+        timerCanvasBehaviour.SetPing(new(exit.transform.position.x, exit.transform.position.y + 1, exit.transform.position.z));
         foreach (CellSPBehaviourPair cspb in CSPBs)
         {
             cspb.SpawnInCell();

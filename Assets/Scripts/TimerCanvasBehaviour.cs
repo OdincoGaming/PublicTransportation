@@ -58,7 +58,7 @@ public class TimerCanvasBehaviour : MonoBehaviour
     public void StartPing()
     {
         pingAnimator.SetTrigger("Ping");
-        StartCoroutine(PingUpdate(pingPosition));
+        //StartCoroutine(PingUpdate(pingPosition));
     }
 
     public void SetTimetoComplete(float t)
