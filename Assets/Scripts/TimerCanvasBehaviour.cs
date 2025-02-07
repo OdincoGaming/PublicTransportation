@@ -9,7 +9,7 @@ public class TimerCanvasBehaviour : MonoBehaviour
     private float timeToComplete = 0;
     private float timeLeft = 0;
     private Timer timer;
-    [SerializeField] private RectTransform pingTransform;
+    [SerializeField] private Transform pingTransform;
     [SerializeField] private Animator pingAnimator;
 
     private Vector3 pingPosition;
@@ -41,7 +41,7 @@ public class TimerCanvasBehaviour : MonoBehaviour
 
     public void SetPing(Vector3 v3)
     {
-        pingTransform.localPosition = Camera.main.WorldToScreenPoint(v3);
+        pingTransform.position = v3;
         pingPosition = v3;
     }
 

@@ -5,7 +5,17 @@ public class DoorBehaviour : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private List<SpawnPointBehaviour> SPBs;
+    [SerializeField] private VoidEventChannelSO doorCloseChannel;
 
+    private void OnEnable()
+    {
+        doorCloseChannel.OnEventRaised += Close;
+    }
+
+    private void OnDisable()
+    {
+        doorCloseChannel.OnEventRaised -= Close;
+    }
     public void SetAsExit()
     {
         animator.SetTrigger("Open");
