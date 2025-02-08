@@ -50,7 +50,7 @@ public class StartingFromScratch : MonoBehaviour
             for (int j = 0; j < height; j++)
             {
 
-                Cell cell = ScriptableObject.CreateInstance("Cell") as Cell;
+                Cell cell = new();
                 cell._location = new Vector3(i + 0.5f, 0, j + 0.5f); // used for drawing gizmos for debugging in scene
                 cell.xPos = i;
                 cell.zPos = j;
@@ -209,10 +209,6 @@ public class StartingFromScratch : MonoBehaviour
 
     private void HandleSpawns()
     {
-        foreach (Cell c in cells)
-        {
-            Destroy(c);
-        }
         Array.Clear(cells, 0, cells.Length);
 
         timerCanvasBehaviour.SetTimetoComplete(CalculateTimeToComplete());

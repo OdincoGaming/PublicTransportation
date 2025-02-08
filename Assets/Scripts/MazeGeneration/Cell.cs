@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cell : ScriptableObject
+public class Cell
 {
     // josh stuff, not used in latest maze gen
     public int xPos = -1;
@@ -22,10 +22,6 @@ public class Cell : ScriptableObject
     public CellState cellState = CellState.Wall;
     public bool visited = false;
 
-    public void CreatTile(char od)
-    {
-        originDir = od;
-    }
 
     public void PopulateNeighbors(Cell[,] cells)
     {
