@@ -10,6 +10,6 @@ AssetOrigin:
   productId: 159508
   packageName: Modular 3D Text - In-Game 3D UI System
   packageVersion: 3.3.1
-  assetPath: Assets/Tiny Giant Studio/Modular 3D Text/Sample Scenes/10 Example -
-    Countdown with Modules- M3DText.unity
+  assetPath: Assets/Plugins/Tiny Giant Studio/Modular 3D Text/Sample Scenes/10 Example
+    - Countdown with Modules- M3DText.unity
   uploadId: 565536

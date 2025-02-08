@@ -52,6 +52,7 @@ public class EndGameTypingAnim : MonoBehaviour
 
     public void ReloadLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        string s = "Bootlegger";
+        SceneManager.LoadScene(s);
     }
 }

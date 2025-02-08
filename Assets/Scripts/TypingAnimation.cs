@@ -14,6 +14,7 @@ public class TypingAnimation : MonoBehaviour
     [SerializeField] private CharController charController;
     [SerializeField] private KinematicCharacterMotor charMotor;
     [SerializeField] private CharPlayer charPlayer;
+    [SerializeField] private CharCamera charCamera;
 
     [SerializeField] private EndGameTypingAnim egta;
 
@@ -56,6 +57,7 @@ public class TypingAnimation : MonoBehaviour
         charController.enabled = true;
         charMotor.enabled = true;
         charPlayer.enabled = true;
+        charCamera.enabled = true;
     }
 
     public void StartEGTA()

@@ -162,7 +162,8 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   androidMinAspectRatio: 1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.DefaultCompany.MazeGenerator
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -747,6 +748,7 @@ PlayerSettings:
   webWasm2023: 0
   scriptingDefineSymbols:
     Standalone: MODULAR_3D_TEXT
+    WebGL: MODULAR_3D_TEXT
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

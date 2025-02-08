@@ -27,17 +27,17 @@ public class TitleTextBehaviour : MonoBehaviour
     {
         if (isVictoryAchieved)
         {
-            eyelidsAnimator.SetTrigger("CloseEyes");
+            StartCoroutine(EndGameEnum(2f));
         }
         else
         {
-            StartCoroutine(EndGameEnum());
+            StartCoroutine(EndGameEnum(3f));
         }
     }
 
-    IEnumerator EndGameEnum()
+    IEnumerator EndGameEnum(float time)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(time);
         eyelidsAnimator.SetTrigger("CloseEyes");
     }
 

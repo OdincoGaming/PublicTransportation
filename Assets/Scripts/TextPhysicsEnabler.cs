@@ -12,20 +12,4 @@ public class TextPhysicsEnabler : MonoBehaviour // reuse but not rename, now ree
             go.SetActive(true);    
         }
     }
-
-    /*[SerializeField] private List<Modular3DText> mText = new();
-    [SerializeField] private List<Modular3DText> physicsText = new();
-
-    public void EnableModules()
-    {
-        foreach(Modular3DText text in mText)
-        {
-            text.gameObject.SetActive(false);
-        }
-
-        foreach (Modular3DText text in physicsText)
-        {
-            text.gameObject.SetActive(true);
-        }
-    }*/
 }

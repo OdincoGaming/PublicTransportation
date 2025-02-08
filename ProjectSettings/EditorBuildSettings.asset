@@ -4,5 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Bootlegger.unity
+    guid: 15afe4f2220b05245a8c2156d01cc993
+  - enabled: 1
+    path: Assets/Scenes/Freddy 1.unity
+    guid: f9ea44812cb943f43944e53db6f45499
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

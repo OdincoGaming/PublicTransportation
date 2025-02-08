@@ -10,5 +10,6 @@ AssetOrigin:
   productId: 159508
   packageName: Modular 3D Text - In-Game 3D UI System
   packageVersion: 3.3.1
-  assetPath: Assets/Tiny Giant Studio/Modular 3D Text/Media/Prefabs/Bright Particle.prefab
+  assetPath: Assets/Plugins/Tiny Giant Studio/Modular 3D Text/Media/Prefabs/Bright
+    Particle.prefab
   uploadId: 565536

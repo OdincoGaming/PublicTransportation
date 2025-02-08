@@ -24,9 +24,9 @@ public class VictoryCheckBehaviour : MonoBehaviour
     }
     private void OnTriggerEnter(Collider coll)
     {
+        isVictoryAchieved = true;
         if (!gameended)
         {
-            isVictoryAchieved = true;
             EndGame();
         }
     }
