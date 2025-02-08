@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class EndGameTypingAnim : MonoBehaviour
 {
@@ -47,5 +48,10 @@ public class EndGameTypingAnim : MonoBehaviour
         textMeshProUGUI.text = "";
         animator.SetTrigger("Close");
         yield return null;
+    }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
