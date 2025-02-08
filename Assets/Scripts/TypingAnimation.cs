@@ -15,6 +15,8 @@ public class TypingAnimation : MonoBehaviour
     [SerializeField] private KinematicCharacterMotor charMotor;
     [SerializeField] private CharPlayer charPlayer;
 
+    [SerializeField] private EndGameTypingAnim egta;
+
     public void StartTyping()
     {
         StartCoroutine(TypingAnimationEnum(text));
@@ -54,5 +56,10 @@ public class TypingAnimation : MonoBehaviour
         charController.enabled = true;
         charMotor.enabled = true;
         charPlayer.enabled = true;
+    }
+
+    public void StartEGTA()
+    {
+        egta.OpenThoughtBubble();
     }
 }
