@@ -3,3 +3,7 @@ The maze generation is based off of Conway's Game of Life where each cell in the
 I used MakeHuman for the characters. 
 I plan to add more elements like sounds; to increase the creepy factor, 
 as well as more animations and a dynamic moving crowd outside the subway cars to increase immersion.
+
+
+https://conwaylife.com/
+http://www.makehumancommunity.org/
